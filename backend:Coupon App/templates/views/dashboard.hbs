@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../../public/CSS.css">
+</head>
+<body class="bg-primary">
+    <div class="container-fluid">
+            <ul class="nav bg-dark text-white">
+                <li class="nav-item">
+                    <h6 class="nav-link active mt-1 align-content-center">
+                        Coupon World
+                    </h6>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/dashboard">
+                        Coupons
+                    </a>
+                </li>             
+            </ul>
+        </div>
+        <div class="m-5 text-white"><h4><center><b>Coupons Data</b></center></h4></div>
+        <table class="table container table-hover table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Website</th>
+      <th scope="col">Discount</th>
+      <th scope="col">Coupon Code</th>
+      <th scope="col">Valid Till</th>
+      <th scope="col">Coupon Details</th>
+   
+    </tr>
+  </thead>
+  <tbody>
+    {{#each CouponData}}
+    <tr>
+        <td>{{_id}}</td>
+        <td>{{website}}</td>
+        <td>{{discount}}</td>
+        <td>{{couponcode}}</td>
+        <td>{{validtill}}</td>
+        <td><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+  Details
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <p>{{couponDetail}}
+        {{couponDetail.website}}<br/>
+        {{couponDetail.couponcode}}<br/>
+        {{couponDetail.validtill}}<br/>
+        {{couponDetail.website}}<br/></p>   
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+</td>
+    </tr>
+    {{/each}}   
+  
+  </tbody>
+</table>
+<div class="container"><center>
+  <button type="button" class="~btn btn-danger" data-toggle="modal" data-target="#form">
+Create Coupon  </button>  
+</div>
+
+<div class="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-bottom-0">
+        <h5 class="modal-title" id="exampleModalLabel">Create Coupon</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form action="/createcoupon" method="POST">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="email1">Website</label>
+            <input type="text" class="form-control" id="email1" aria-describedby="emailHelp" placeholder="Enter website" name="website">
+          </div>
+          <div class="form-group">
+            <label for="password1">Discount</label>
+            <input type="text" class="form-control" id="password1" placeholder="Enter the discount" name="discount">
+          </div>
+          <div class="form-group">
+            <label for="password1">Coupon Code</label>
+            <input type="text" class="form-control" id="password1" placeholder="Enter coupon code" name="couponcode">
+          </div>
+          <div class="form-group">
+            <label for="password1">Valid Till</label>
+            <input type="text" class="form-control" id="password2" placeholder="DDMMYY" name="validtill">
+          </div>
+        </div>
+        <div class="modal-footer border-top-0 d-flex justify-content-center">
+          <button type="submit" class="btn btn-success">Create</button>
+        </div>
+      </form>
+    </div>
+  </div></center>
+</div>
+</body>
+</html>
