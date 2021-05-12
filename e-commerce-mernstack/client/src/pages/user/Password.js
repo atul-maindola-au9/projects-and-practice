@@ -1,4 +1,3 @@
-import { FlagOutlined } from '@ant-design/icons';
 import React, { useState } from 'react';
 import UserNav from '../../component/nav/UserNav';
 import { auth } from '../../firebase';

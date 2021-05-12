@@ -15,6 +15,8 @@ import History from './pages/user/History';
 import UserRoute from './component/routes/UserRoute';
 import Password from './pages/user/Password';
 import Wishlist from './pages/user/Wishlist';
+import AdminRoute from './component/routes/AdminRoute';
+import AdminDashboard from './pages/admin/AdminDashboard';
 
 const App = () => {
 	const dispatch = useDispatch();
@@ -43,7 +45,7 @@ const App = () => {
 
 		//cleanup
 		return () => unsubscribe();
-	}, []);
+	}, [dispatch]);
 	return (
 		<>
 			<Header />
@@ -58,6 +60,10 @@ const App = () => {
 				<UserRoute exact path='/user/history' component={History} />
 				<UserRoute path='/user/password' component={Password} />
 				<UserRoute path='/user/wishlist' component={Wishlist} />
+				<AdminRoute
+					path='/admin/dashboard'
+					component={AdminDashboard}
+				/>
 			</Switch>
 		</>
 	);

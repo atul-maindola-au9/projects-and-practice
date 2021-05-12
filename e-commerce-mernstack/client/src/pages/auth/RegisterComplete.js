@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { auth } from '../../firebase';
 import { toast } from 'react-toastify';
 import { Button } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { createOrUpdateUser } from '../../functions/auth';
 
 const RegisterComplete = ({ history }) => {
