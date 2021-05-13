@@ -55,14 +55,3 @@ exports.remove = async (req, res) => {
 		res.status(400).send('data deletion failed');
 	}
 };
-
-exports.remove = async (req, res) => {
-	try {
-		const deleted = await Category.findOneAndDelete({
-			slug: req.params.slug,
-		});
-		res.json(deleted);
-	} catch (error) {
-		res.status(400).send('data deletion failed');
-	}
-};
