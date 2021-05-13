@@ -23,7 +23,7 @@ mongoose
 
 //middlewares
 app.use(morgan('dev'));
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true, limit: '2mb' }));
 app.use(cors());
 
 //route middlewares

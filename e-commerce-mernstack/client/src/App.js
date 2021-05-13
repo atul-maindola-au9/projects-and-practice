@@ -17,6 +17,7 @@ import Password from './pages/user/Password';
 import Wishlist from './pages/user/Wishlist';
 import AdminRoute from './component/routes/AdminRoute';
 import AdminDashboard from './pages/admin/AdminDashboard';
+import CategoryCreate from './pages/admin/category/CategoryCreate';
 
 const App = () => {
 	const dispatch = useDispatch();
@@ -64,6 +65,7 @@ const App = () => {
 					path='/admin/dashboard'
 					component={AdminDashboard}
 				/>
+				<AdminRoute path='/admin/category' component={CategoryCreate} />
 			</Switch>
 		</>
 	);

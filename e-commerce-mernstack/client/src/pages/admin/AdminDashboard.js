@@ -1,5 +1,5 @@
 import React from 'react';
-import AdminNav from '../../component/nav/UserNav';
+import AdminNav from '../../component/nav/AdminNav';
 
 const AdminDashboard = () => {
 	return (
@@ -8,6 +8,7 @@ const AdminDashboard = () => {
 				<div className='col-md-2'>
 					<AdminNav />
 				</div>
+				<div className='col'>category create</div>
 			</div>
 		</div>
 	);
