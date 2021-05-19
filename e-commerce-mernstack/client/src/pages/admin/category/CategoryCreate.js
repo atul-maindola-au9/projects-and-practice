@@ -4,6 +4,7 @@ import { toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import {
 	createCategory,
+	getCategories,
 	getCategory,
 	removeCategory,
 } from '../../../functions/category';
@@ -11,21 +12,31 @@ import {
 const CategoryCreate = () => {
 	const [name, setName] = useState('');
 	const [loading, setLoading] = useState(false);
+	const [categories, setCategories] = useState([]);
 	const { user } = useSelector((state) => ({ ...state }));
 
-	useEffect(() => {});
+	useEffect(() => {
+		loadCategories();
+	}, []);
+
+	const loadCategories = () => {
+		getCategories().then((c) => setCategories(c.data));
+	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		setLoading(true);
 		createCategory({ name }, user.token)
 			.then((res) => {
-				setName('');
-				toast.success(`"${res.data.name}" is created`);
-			})
-			.catch((err) => {
+				// console.log('res...', res);
 				setLoading(false);
-				if (err.response.status === 400) toast.error(err.response.data);
+				setName('');
+				toast.success(`"${res.name}" is created`);
+			})
+			.catch((error) => {
+				console.log(error);
+				setLoading(false);
+				error.response && error.response.status;
 			});
 	};
 
@@ -52,6 +63,8 @@ const CategoryCreate = () => {
 				<div className='col'>
 					<h4>Create Category</h4>
 					{categoryForm()}
+					<hr />
+					{JSON.stringify(categories)}
 				</div>
 			</div>
 		</div>

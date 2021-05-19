@@ -13,7 +13,7 @@ mongoose
 	.connect(process.env.MONGO_URI, {
 		useNewUrlParser: true,
 		useCreateIndex: true,
-		useFindAndModify: true,
+		useFindAndModify: false,
 		useUnifiedTopology: true,
 	})
 	.then(() => {
@@ -23,12 +23,19 @@ mongoose
 
 //middlewares
 app.use(morgan('dev'));
+app.use(express.json());
 app.use(express.urlencoded({ extended: true, limit: '2mb' }));
 app.use(cors());
 
 //route middlewares
 readdirSync('./routes').map((r) => app.use('/api', require('./routes/' + r)));
 
+//port
+const port = process.env.PORT || 8000;
+
+app.listen(port, () => {
+	console.log(`App is running on ${port}`);
+});
 //port
 const port = process.env.PORT || 8000;
 

@@ -3,15 +3,17 @@ const slugify = require('slugify');
 
 exports.create = async (req, res) => {
 	try {
-		console.log(req);
 		const { name } = req.body;
 		const category = await new Category({
 			name,
 			slug: slugify(name),
 		}).save();
+		console.log('category', category);
 		res.json(category);
-	} catch (error) {
-		res.status(400).send('error: Creation failed');
+		// res.json(await new Category({ name, slug: slugify(name) }).save());
+	} catch (err) {
+		// console.log(err);
+		res.status(400).send('Create category failed');
 	}
 };
 
